@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FinalProject</string>
+    <string name="welcomeMessage">Bem-vindo à pesquisa de imagens do dia da NASA!</string>
+    <string name="userName">Escreva seu nome aqui</string>
+    <string name="saveUserNameBtn">Salvar</string>
+    <string name="sharedPrefs_username_key">UserName</string>
+    <string name="sharedPrefs_file_key">FileName</string>
+    <string name="attention">Atenção</string>
+    <string name="userNameEmpty">Por favor, escreva um nome de usuário</string>
+    <string name="ok">OK</string>
+    <string name="home">Página inicial</string>
+    <string name="savedImages">Imagens salvas</string>
+    <string name="welcome">Bem-vindo</string>
+    <string name="selectDate">Selecione uma data:</string>
+    <string name="viewImgBtn">Visualizar</string>
+    <string name="saveImgBtn">Salvar</string>
+    <string name="deleteImgBtn">Deletar</string>
+    <string name="toastSavedImage">Imagem salva</string>
+    <string name="toastDeletedImage">Imagem deletada</string>
+    <string name="deleteMessage">Você quer deletar essa imagem?</string>
+    <string name="yes">Sim</string>
+    <string name="no">Não</string>
+    <string name="imageDeletedMessage">Imagem deletada</string>
+    <string name="imageDeletedUndoMessage">Desfazer</string>
+</resources>

@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">FinalProject</string>
+    <string name="welcomeMessage">Welcome to NASA image of the day search!</string>
+    <string name="userName">Enter your name here</string>
+    <string name="saveUserNameBtn">Save</string>
+    <string name="sharedPrefs_username_key">UserName</string>
+    <string name="sharedPrefs_file_key">FileName</string>
+    <string name="attention">Attention</string>
+    <string name="userNameEmpty">Please enter a username</string>
+    <string name="ok">OK</string>
+    <string name="home">Home</string>
+    <string name="savedImages">Saved Images</string>
+    <string name="welcome">Welcome</string>
+    <string name="selectDate">Select a date:</string>
+    <string name="viewImgBtn">View</string>
+    <string name="saveImgBtn">Save</string>
+    <string name="deleteImgBtn">Delete</string>
+    <string name="toastSavedImage">Image saved</string>
+    <string name="toastDeletedImage">Image deleted</string>
+    <string name="deleteMessage">Do you want to delete this image?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="imageDeletedMessage">Image deleted</string>
+    <string name="imageDeletedUndoMessage">Undo</string>
+</resources>
