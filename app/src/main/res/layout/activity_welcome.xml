@@ -44,7 +44,8 @@
             android:layout_weight="20"
             android:textColorHint="@color/cardview_light_background"
             android:textColor="@color/cardview_light_background"
-            android:background="@color/purple_700"/>
+            android:background="@color/purple_700"
+            android:inputType="text"/>
 
         <Button
             android:id="@+id/saveUserNameBtn"
