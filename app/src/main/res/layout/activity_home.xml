@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HomeActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/welcome_background">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,38 +18,48 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Welcome user!"
-            android:textSize="20sp"
+            android:textSize="30sp"
             android:textAlignment="center"
-            android:textColor="@color/purple_700"
-            android:padding="20dp"/>
+            android:textStyle="bold"
+            android:textColor="@color/gold"
+            android:padding="10sp"
+            android:layout_marginTop="20sp"/>
 
         <TextView
             android:id="@+id/selectDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/selectDate"
-            android:textSize="20sp"
+            android:textSize="25sp"
             android:textAlignment="center"
-            android:textColor="@color/purple_700"/>
+            android:textStyle="bold"
+            android:textColor="@color/gray"/>
 
         <DatePicker
             android:id="@+id/datePicker"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:datePickerMode="spinner"
+            android:background="@color/gray"
+            android:layout_gravity="center"
+            android:layout_marginTop="20sp"
             android:calendarViewShown="false"/>
 
         <Button
             android:id="@+id/viewImgBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/viewImgBtn" />
+            android:layout_gravity="center"
+            android:text="@string/viewImgBtn"
+            android:layout_marginTop="10sp"/>
 
         <Button
             android:id="@+id/viewSavedImgBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="View saved" />
+            android:layout_gravity="center"
+            android:text="View saved"
+            android:layout_marginTop="10sp"/>
 
     </LinearLayout>
 

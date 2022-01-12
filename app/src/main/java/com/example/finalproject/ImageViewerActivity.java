@@ -32,7 +32,17 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+/**
+ * The ImageViewerActivity class contains the functionality of the image viewer page.
+ *
+ * @author Adriana de Lazzari
+ */
+
 public class ImageViewerActivity extends AppCompatActivity {
+
+    /**
+     * Instance variables used in the class.
+     */
 
     private String dateString;
     private String imageTitle;
@@ -45,6 +55,15 @@ public class ImageViewerActivity extends AppCompatActivity {
     private ImageDatabaseOpenHelper imageDatabaseOpenHelper;
     private Bitmap dailyImage;
 
+    /**
+     * The onCreate method creates the image viewer page and adds functionality.
+     * The image, its date and title is displayed to the user.
+     * The Save button allows the user to save the image, whose data is saved to the database. A toast message indicates that the image was saved.
+     * Once saved, the delete button allows the image deletion from the database. A toast message indicates that the image was deleted.
+     *
+     * @param savedInstanceState Bundle object containing the activity's previously saved state.
+     */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +71,7 @@ public class ImageViewerActivity extends AppCompatActivity {
 
         this.imageDatabaseOpenHelper = new ImageDatabaseOpenHelper(this);
 
-        TextView date = findViewById(R.id.date);
+        TextView date = findViewById(R.id.imageDate);
         this.progressBar = findViewById(R.id.progressBar);
         this.imageTitleTextView = findViewById(R.id.imageTitle);
         this.image = findViewById(R.id.image);
@@ -60,6 +79,7 @@ public class ImageViewerActivity extends AppCompatActivity {
         dateString = bundle.getString("date_key", "");
         date.setText(dateString);
 
+        //image information is saved to the database when clicking on the save button
         this.saveImgBtn = findViewById(R.id.saveImgBtn);
         saveImgBtn.setOnClickListener(click -> {
             SQLiteDatabase db = imageDatabaseOpenHelper.getWritableDatabase();
@@ -73,6 +93,7 @@ public class ImageViewerActivity extends AppCompatActivity {
             Toast.makeText(this, R.string.toastSavedImage, Toast.LENGTH_LONG).show();
         });
 
+        //image deletion from the database can be done once the image is saved. The deletion is done according to the image's date
         this.deleteImgBtn = findViewById(R.id.deleteImgBtn);
         deleteImgBtn.setOnClickListener(click -> {
             SQLiteDatabase db = imageDatabaseOpenHelper.getWritableDatabase();
@@ -85,8 +106,13 @@ public class ImageViewerActivity extends AppCompatActivity {
         checkDatabase();
     }
 
+    /**
+     * The checkDatabase method checks if the image was already saved to the database.
+     * Otherwise, it creates an AsyncTask to retrieve NASA information and downloads the image.
+     */
+
     private void checkDatabase(){
-        //getting database connection
+        //Getting database connection
         SQLiteDatabase db = imageDatabaseOpenHelper.getReadableDatabase();
 
         String selection = ImageDatabaseOpenHelper.COL_DATE + " = ?";
@@ -94,7 +120,7 @@ public class ImageViewerActivity extends AppCompatActivity {
 
         String [] allColumns = {ImageDatabaseOpenHelper.COL_TITLE, ImageDatabaseOpenHelper.COL_URL, ImageDatabaseOpenHelper.COL_DATE};
 
-        //querying all the results from the database
+        //Checking the database
         Cursor result = db.query(false, ImageDatabaseOpenHelper.TABLE_NAME, allColumns, selection, selectionArgs, null, null, null, null);
         if(result != null && result.moveToFirst()){
             this.imageTitle = result.getString((result.getColumnIndex(ImageDatabaseOpenHelper.COL_TITLE)));
@@ -116,6 +142,7 @@ public class ImageViewerActivity extends AppCompatActivity {
                 imageNasaQuery.execute("https://api.nasa.gov/planetary/apod?api_key=sVsvLmBvGzGWgftw0biKMqwAna8hpi7FVJ1BlFLX&date=" + dateString);
             }
         }else{
+            //Creating an AsyncTask object and retrieving NASA information
             ImageNasaQuery imageNasaQuery = new ImageNasaQuery();
             imageNasaQuery.execute("https://api.nasa.gov/planetary/apod?api_key=sVsvLmBvGzGWgftw0biKMqwAna8hpi7FVJ1BlFLX&date=" + dateString);
             saveImgBtn.setVisibility(View.VISIBLE);
@@ -124,32 +151,52 @@ public class ImageViewerActivity extends AppCompatActivity {
         result.close();
     }
 
+    /**
+     * The fileExists method checks if file exists.
+     *
+     * @param fname file name.
+     *
+     * @return true if file exists.
+     */
+
     public boolean fileExists(String fname) {
         File file = getBaseContext().getFileStreamPath(fname);
         return file.exists();
     }
 
+    /**
+     * The ImageNasaQuery class consumes the NASA API and downloads the image of the day.
+     */
+
     private class ImageNasaQuery extends AsyncTask<String, Integer, String> {
+
+        /**
+         * The doInBackground method consumes the NASA API and downloads the image of the day.
+         *
+         * @param args task parameters.
+         *
+         * @return String when process is complete.
+         */
 
         @Override
         protected String doInBackground(String... args) {
 
-            //loading from JSON
+            //Loading from JSON
 
             try {
                 publishProgress(0);
 
-                //create a URL object of what server to contact:
+                //Creating a URL object of what server to contact:
                 URL url = new URL(args[0]);
 
-                //open the connection
+                //Opening the connection
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 
-                //wait for data:
+                //Waiting for data:
                 InputStream response = urlConnection.getInputStream();
 
                 //JSON reading:
-                //Build the entire string response:
+                //Building the entire string response:
                 BufferedReader reader = new BufferedReader(new InputStreamReader(response, "UTF-8"), 8);
                 StringBuilder sb = new StringBuilder();
 
@@ -161,10 +208,10 @@ public class ImageViewerActivity extends AppCompatActivity {
                 }
                 String result = sb.toString(); //result is the whole string
 
-                // convert string to JSON:
+                //Converting string to JSON:
                 JSONObject imageDetails = new JSONObject(result);
 
-                //get the double associated with "value"
+                //Getting the double associated with "value"
                 imageTitle = imageDetails.getString("title");
                 imageUrl = imageDetails.getString("url");
 
@@ -192,10 +239,22 @@ public class ImageViewerActivity extends AppCompatActivity {
             return "Done";
         }
 
+        /**
+         * The onProgressUpdate method updates the progress.
+         *
+         * @param args progress parameters.
+         */
+
         public void onProgressUpdate(Integer... args) {
             progressBar.setVisibility(View.VISIBLE);
             progressBar.setProgress(args[0]);
         }
+
+        /**
+         * The onPostExecute method displays the image.
+         *
+         * @param fromDoInBackground return from the doInBackground method.
+         */
 
         public void onPostExecute(String fromDoInBackground) {
             Log.i("HTTP", fromDoInBackground);

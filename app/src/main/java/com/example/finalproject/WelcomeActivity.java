@@ -13,14 +13,19 @@ import android.widget.Button;
 import android.widget.EditText;
 
 /**
- * The WelcomeActivity class contains the functionality of the welcome page
+ * The WelcomeActivity class contains the functionality of the welcome page.
+ *
+ * @author Adriana de Lazzari
  */
 
 public class WelcomeActivity extends AppCompatActivity {
 
     /**
-     * onCreate creates the welcome activity and adds functionality
-     * @param savedInstanceState
+     * The onCreate method creates the welcome activity and adds functionality.
+     * EditText and Button allow the user to enter and save their name.
+     * The username is saved so that, the next time the user opens the application, the home activity is launched directly.
+     *
+     * @param savedInstanceState Bundle object containing the activity's previously saved state.
      */
 
     @Override
@@ -33,6 +38,8 @@ public class WelcomeActivity extends AppCompatActivity {
         SharedPreferences sharedPref = getSharedPreferences(getString(R.string.sharedPrefs_file_key), Context.MODE_PRIVATE);
 
         String savedString = sharedPref.getString(getString(R.string.sharedPrefs_username_key), "");
+
+        //The user name needs to be entered and saved to start the home activity
         if (!savedString.isEmpty()) {
             startActivity(homePage);
             finish();

@@ -24,12 +24,33 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
+/**
+ * The SavedImageActivity class contains the functionality of the saved image list page.
+ *
+ * @author Adriana de Lazzari
+ */
+
 public class SavedImageActivity extends AppCompatActivity {
+
+    /**
+     * Instance variables used in the class.
+     */
 
     private MyListAdapter myAdapter;
     private ImageDatabaseOpenHelper imageDatabaseOpenHelper;
     private ArrayList<ImageDetails> imageDetailsList = new ArrayList<>();
     private ImageDetails imageDetailsDeleted;
+
+    /**
+     * The onCreate method creates the saved image list page and adds functionality.
+     * The ListView items are displayed to the user with their saved images.
+     * Clicking on a ListView item goes to ImageViewerActivity where the user can see the image details.
+     * The AlertDialog allows the user to delete an item from the list.
+     * A snackbar is displayed once the image is deleted with and Undo option to undo the action.
+     * The loadDataFromDatabase method is called to populate the ListView.
+     *
+     * @param savedInstanceState Bundle object containing the activity's previously saved state.
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,12 +99,20 @@ public class SavedImageActivity extends AppCompatActivity {
         loadDataFromDatabase();
     }
 
+    /**
+     * The onResume method calls the loadDataFromDatabase method to refresh the data.
+     */
+
     @Override
     protected void onResume() {
         super.onResume();
 
         loadDataFromDatabase();
     }
+
+    /**
+     * The loadDataFromDatabase method retrieves image data from database.
+     */
 
     private void loadDataFromDatabase(){
         imageDetailsList.clear();
@@ -111,6 +140,12 @@ public class SavedImageActivity extends AppCompatActivity {
         myAdapter.notifyDataSetChanged();
     }
 
+    /**
+     * The insertIntoDatabase method inserts image data into the database.
+     *
+     * @param imageDetails object of the ImageDetails class.
+     */
+
     private void insertIntoDatabase(ImageDetails imageDetails){
         SQLiteDatabase db = imageDatabaseOpenHelper.getWritableDatabase();
         ContentValues newRowValues = new ContentValues();
@@ -120,12 +155,27 @@ public class SavedImageActivity extends AppCompatActivity {
         db.insert(ImageDatabaseOpenHelper.TABLE_NAME, "NullColumnName", newRowValues);
     }
 
+    /**
+     * The deleteDataFromDatabase method deletes image data from the database.
+     *
+     * @param id the deletion is done by id.
+     */
+
     private void deleteDataFromDatabase(long id){
         SQLiteDatabase db = imageDatabaseOpenHelper.getWritableDatabase();
         db.delete(ImageDatabaseOpenHelper.TABLE_NAME, ImageDatabaseOpenHelper.COL_ID + "=?", new String[]{Long.toString(id)});
     }
 
+    /**
+     * The ImageDetails class contains image information.
+     */
+
     private class ImageDetails{
+
+        /**
+         * Instance variables that represent the image details.
+         */
+
         private long id;
         private String title;
         private String date;
@@ -155,22 +205,60 @@ public class SavedImageActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * The MyListAdapter class adapts the data to be displayed in the ListView.
+     */
+
     private class MyListAdapter extends BaseAdapter {
+
+        /**
+         * The getCount method returns the size of the ArrayList.
+         *
+         * @return number of items.
+         */
 
         @Override
         public int getCount() {
             return imageDetailsList.size();
         }
 
+        /**
+         * The getItem method returns the object displayed at row position in the list.
+         *
+         * @param position item position in the list.
+         *
+         * @return what to show at row position.
+         */
+
         @Override
         public Object getItem(int position) {
             return imageDetailsList.get(position);
         }
 
+        /**
+         * The getItemId method returns the database id of the element at the given index of position.
+         *
+         * @param position item position in the list.
+         *
+         * @return database id of the item at a given position.
+         */
+
         @Override
         public long getItemId(int position) {
             return imageDetailsList.get(position).getId();
         }
+
+        /**
+         * The getView method specifies how each row looks.
+         *
+         * @param position item position in the list.
+         *
+         * @param convertView the old view to reuse, if possible.
+         *
+         * @param parent the parent that this view will eventually be attached to.
+         *
+         * @return View object to go in a row of the ListView.
+         */
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
