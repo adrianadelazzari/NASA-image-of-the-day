@@ -11,6 +11,8 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -54,6 +56,7 @@ public class ImageViewerActivity extends AppCompatActivity {
     private Button deleteImgBtn;
     private ImageDatabaseOpenHelper imageDatabaseOpenHelper;
     private Bitmap dailyImage;
+    private NavigationManager navigationManager;
 
     /**
      * The onCreate method creates the image viewer page and adds functionality.
@@ -68,6 +71,8 @@ public class ImageViewerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_viewer);
+
+        this.navigationManager = new NavigationManager(this, R.id.toolbarImageViewer, R.id.drawerLayoutImageViewer, R.id.navViewImageViewer, R.string.helpMessageImageViewer, R.string.imageViewerActivityName);
 
         this.imageDatabaseOpenHelper = new ImageDatabaseOpenHelper(this);
 
@@ -262,5 +267,17 @@ public class ImageViewerActivity extends AppCompatActivity {
             image.setImageBitmap(dailyImage);
             progressBar.setVisibility(View.INVISIBLE);
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        return this.navigationManager.createMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        return this.navigationManager.onItemClicked(item);
     }
 }

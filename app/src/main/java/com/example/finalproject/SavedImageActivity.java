@@ -11,6 +11,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -40,6 +42,7 @@ public class SavedImageActivity extends AppCompatActivity {
     private ImageDatabaseOpenHelper imageDatabaseOpenHelper;
     private ArrayList<ImageDetails> imageDetailsList = new ArrayList<>();
     private ImageDetails imageDetailsDeleted;
+    private NavigationManager navigationManager;
 
     /**
      * The onCreate method creates the saved image list page and adds functionality.
@@ -56,6 +59,8 @@ public class SavedImageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_saved_image);
+
+        this.navigationManager = new NavigationManager(this, R.id.toolbarSavedImage, R.id.drawerLayoutSavedImage, R.id.navViewSavedImage, R.string.helpMessageSavedImage, R.string.savedImageActivityName);
 
         this.imageDatabaseOpenHelper = new ImageDatabaseOpenHelper(this);
 
@@ -91,7 +96,8 @@ public class SavedImageActivity extends AppCompatActivity {
                                     loadDataFromDatabase();
                                 })).show();
                     })
-                    .setNegativeButton(R.string.no, (click, arg) -> { })
+                    .setNegativeButton(R.string.no, (click, arg) -> {
+                    })
                     .create().show();
             return true;
         });
@@ -114,20 +120,20 @@ public class SavedImageActivity extends AppCompatActivity {
      * The loadDataFromDatabase method retrieves image data from database.
      */
 
-    private void loadDataFromDatabase(){
+    private void loadDataFromDatabase() {
         imageDetailsList.clear();
 
         //getting database connection
         SQLiteDatabase db = imageDatabaseOpenHelper.getReadableDatabase();
 
-        String [] allColumns = {ImageDatabaseOpenHelper.COL_ID, ImageDatabaseOpenHelper.COL_TITLE, ImageDatabaseOpenHelper.COL_URL, ImageDatabaseOpenHelper.COL_DATE};
+        String[] allColumns = {ImageDatabaseOpenHelper.COL_ID, ImageDatabaseOpenHelper.COL_TITLE, ImageDatabaseOpenHelper.COL_URL, ImageDatabaseOpenHelper.COL_DATE};
         String orderBy = ImageDatabaseOpenHelper.COL_DATE + " DESC";
 
         //querying all the results from the database
         Cursor results = db.query(false, ImageDatabaseOpenHelper.TABLE_NAME, allColumns, null, null, null, null, orderBy, null);
 
         results.moveToFirst();
-        while(!results.isAfterLast()){
+        while (!results.isAfterLast()) {
             long id = results.getLong((results.getColumnIndex(ImageDatabaseOpenHelper.COL_ID)));
             String title = results.getString((results.getColumnIndex(ImageDatabaseOpenHelper.COL_TITLE)));
             String date = results.getString((results.getColumnIndex(ImageDatabaseOpenHelper.COL_DATE)));
@@ -146,7 +152,7 @@ public class SavedImageActivity extends AppCompatActivity {
      * @param imageDetails object of the ImageDetails class.
      */
 
-    private void insertIntoDatabase(ImageDetails imageDetails){
+    private void insertIntoDatabase(ImageDetails imageDetails) {
         SQLiteDatabase db = imageDatabaseOpenHelper.getWritableDatabase();
         ContentValues newRowValues = new ContentValues();
         newRowValues.put(ImageDatabaseOpenHelper.COL_TITLE, imageDetails.getTitle());
@@ -161,7 +167,7 @@ public class SavedImageActivity extends AppCompatActivity {
      * @param id the deletion is done by id.
      */
 
-    private void deleteDataFromDatabase(long id){
+    private void deleteDataFromDatabase(long id) {
         SQLiteDatabase db = imageDatabaseOpenHelper.getWritableDatabase();
         db.delete(ImageDatabaseOpenHelper.TABLE_NAME, ImageDatabaseOpenHelper.COL_ID + "=?", new String[]{Long.toString(id)});
     }
@@ -170,7 +176,7 @@ public class SavedImageActivity extends AppCompatActivity {
      * The ImageDetails class contains image information.
      */
 
-    private class ImageDetails{
+    private class ImageDetails {
 
         /**
          * Instance variables that represent the image details.
@@ -226,7 +232,6 @@ public class SavedImageActivity extends AppCompatActivity {
          * The getItem method returns the object displayed at row position in the list.
          *
          * @param position item position in the list.
-         *
          * @return what to show at row position.
          */
 
@@ -239,7 +244,6 @@ public class SavedImageActivity extends AppCompatActivity {
          * The getItemId method returns the database id of the element at the given index of position.
          *
          * @param position item position in the list.
-         *
          * @return database id of the item at a given position.
          */
 
@@ -251,12 +255,9 @@ public class SavedImageActivity extends AppCompatActivity {
         /**
          * The getView method specifies how each row looks.
          *
-         * @param position item position in the list.
-         *
+         * @param position    item position in the list.
          * @param convertView the old view to reuse, if possible.
-         *
-         * @param parent the parent that this view will eventually be attached to.
-         *
+         * @param parent      the parent that this view will eventually be attached to.
          * @return View object to go in a row of the ListView.
          */
 
@@ -267,7 +268,7 @@ public class SavedImageActivity extends AppCompatActivity {
             View newView = convertView;
             LayoutInflater inflater = getLayoutInflater();
 
-            if(newView == null) {
+            if (newView == null) {
                 newView = inflater.inflate(R.layout.image_details, parent, false);
             }
 
@@ -289,5 +290,17 @@ public class SavedImageActivity extends AppCompatActivity {
 
             return newView;
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        return this.navigationManager.createMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        return this.navigationManager.onItemClicked(item);
     }
 }

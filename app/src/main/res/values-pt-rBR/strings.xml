@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">FinalProject</string>
+    <string name="homeActivityName">Página Inicial</string>
+    <string name="imageViewerActivityName">Visualizador</string>
+    <string name="savedImageActivityName">Imagens Salvas</string>
     <string name="welcomeMessage">Bem-vindo à pesquisa de imagens do dia da NASA!</string>
     <string name="userName">Escreva seu nome aqui</string>
     <string name="saveUserNameBtn">Salvar</string>
@@ -9,11 +12,10 @@
     <string name="attention">Atenção</string>
     <string name="userNameEmpty">Por favor, escreva um nome de usuário</string>
     <string name="ok">OK</string>
-    <string name="home">Página inicial</string>
-    <string name="savedImages">Imagens salvas</string>
     <string name="welcome">Bem-vindo</string>
     <string name="selectDate">Selecione uma data:</string>
     <string name="viewImgBtn">Visualizar</string>
+    <string name="viewSavedImgBtn">Visualizar Salvas</string>
     <string name="saveImgBtn">Salvar</string>
     <string name="deleteImgBtn">Deletar</string>
     <string name="toastSavedImage">Imagem salva</string>
@@ -23,4 +25,14 @@
     <string name="no">Não</string>
     <string name="imageDeletedMessage">Imagem deletada</string>
     <string name="imageDeletedUndoMessage">Desfazer</string>
+    <string name="versionNumber">Versão 1.0</string>
+    <string name="home">Página inicial</string>
+    <string name="savedImages">Imagens salvas</string>
+    <string name="help">Ajuda</string>
+    <string name="open">Abrir</string>
+    <string name="close">Fechar</string>
+    <string name="contentDescription">Imagem do dia da NASA</string>
+    <string name="helpMessageHome">Para visualizar a imagem da NASA do dia, selecione uma data e clique no botão Visualizar. Para visualizar suas imagens salvas, clique no botão Visualizar Salvas.</string>
+    <string name="helpMessageImageViewer">Para salvar a imagem, clique no botão Salvar. Após salvar, você pode excluir a imagem salva clicando no botão Deletar.</string>
+    <string name="helpMessageSavedImage">Todas as suas imagens salvas são exibidas aqui. Para visualizar os detalhes da imagem, clique no item da imagem. Ao fazer um clique longo no item da lista, você pode excluir a imagem salva da lista.</string>
 </resources>

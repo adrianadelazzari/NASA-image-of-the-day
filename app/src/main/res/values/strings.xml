@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">FinalProject</string>
+    <string name="homeActivityName">Home</string>
+    <string name="imageViewerActivityName">Viewer</string>
+    <string name="savedImageActivityName">Saved Images</string>
     <string name="welcomeMessage">Welcome to NASA image of the day search!</string>
     <string name="userName">Enter your name here</string>
     <string name="saveUserNameBtn">Save</string>
@@ -8,11 +11,10 @@
     <string name="attention">Attention</string>
     <string name="userNameEmpty">Please enter a username</string>
     <string name="ok">OK</string>
-    <string name="home">Home</string>
-    <string name="savedImages">Saved Images</string>
     <string name="welcome">Welcome</string>
     <string name="selectDate">Select a date:</string>
     <string name="viewImgBtn">View</string>
+    <string name="viewSavedImgBtn">View Saved</string>
     <string name="saveImgBtn">Save</string>
     <string name="deleteImgBtn">Delete</string>
     <string name="toastSavedImage">Image saved</string>
@@ -22,4 +24,14 @@
     <string name="no">No</string>
     <string name="imageDeletedMessage">Image deleted</string>
     <string name="imageDeletedUndoMessage">Undo</string>
+    <string name="versionNumber">Version 1.0</string>
+    <string name="home">Home</string>
+    <string name="savedImages">Saved images</string>
+    <string name="help">Help</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="contentDescription">NASA image of the day</string>
+    <string name="helpMessageHome">To view the NASA image of the day, select a date and click on the View button. To view your saved images, click on the View Saved button.</string>
+    <string name="helpMessageImageViewer">To save the image, click on the Save button. After saving, you can delete the saved image by clicking on the Delete button.</string>
+    <string name="helpMessageSavedImage">All your saved images are displayed here. To view the image details, click on the image item. By doing a long click on the list item, you can delete the saved image from the list.</string>
 </resources>
