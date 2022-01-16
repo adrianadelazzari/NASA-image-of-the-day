@@ -42,6 +42,11 @@ public class SavedImageActivity extends AppCompatActivity {
     private ImageDatabaseOpenHelper imageDatabaseOpenHelper;
     private ArrayList<ImageDetails> imageDetailsList = new ArrayList<>();
     private ImageDetails imageDetailsDeleted;
+
+    /**
+     * NavigationManager instance to display the toolbar and navigation drawer on the saved image list page.
+     */
+
     private NavigationManager navigationManager;
 
     /**
@@ -51,6 +56,8 @@ public class SavedImageActivity extends AppCompatActivity {
      * The AlertDialog allows the user to delete an item from the list.
      * A snackbar is displayed once the image is deleted with and Undo option to undo the action.
      * The loadDataFromDatabase method is called to populate the ListView.
+     * Activities are accessible by selecting a graphical icon from a Toolbar, and NavigationDrawer.
+     * Activities have a help menu item that displays an AlertDialog with instructions for how to use the interface.
      *
      * @param savedInstanceState Bundle object containing the activity's previously saved state.
      */
@@ -60,6 +67,7 @@ public class SavedImageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_saved_image);
 
+        //Displaying toolbar, navigation drawer, and help message
         this.navigationManager = new NavigationManager(this, R.id.toolbarSavedImage, R.id.drawerLayoutSavedImage, R.id.navViewSavedImage, R.string.helpMessageSavedImage, R.string.savedImageActivityName);
 
         this.imageDatabaseOpenHelper = new ImageDatabaseOpenHelper(this);
@@ -292,11 +300,27 @@ public class SavedImageActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * The onCreateOptionsMenu method specifies the options menu for the activity.
+     *
+     * @param menu the options menu in which items are placed.
+     *
+     * @return navigationManager object which calls createMenu method.
+     */
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
         return this.navigationManager.createMenu(menu);
     }
+
+    /**
+     * The onOptionsItemSelected method is called whenever an item in the options menu is selected.
+     *
+     * @param item the menu item that was selected.
+     *
+     * @return navigationManager object which calls onItemClicked method.
+     */
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

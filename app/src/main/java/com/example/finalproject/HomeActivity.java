@@ -33,6 +33,10 @@ import java.util.Calendar;
 
 public class HomeActivity extends AppCompatActivity {
 
+    /**
+     * NavigationManager instance to display the toolbar and navigation drawer on the home page.
+     */
+
     private NavigationManager navigationManager;
 
     /**
@@ -40,6 +44,8 @@ public class HomeActivity extends AppCompatActivity {
      * The username is retrieved to display a welcome message.
      * The DatePicker object provides a widget that allows the user to select a date to display the NASA image of the day.
      * The user also might see their saved images.
+     * Activities are accessible by selecting a graphical icon from a Toolbar, and NavigationDrawer.
+     * Activities have a help menu item that displays an AlertDialog with instructions for how to use the interface.
      *
      * @param savedInstanceState Bundle object containing the activity's previously saved state.
      */
@@ -49,6 +55,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        //Displaying toolbar, navigation drawer, and help message
         this.navigationManager = new NavigationManager(this, R.id.toolbarHome, R.id.drawerLayoutHome, R.id.navViewHome, R.string.helpMessageHome, R.string.homeActivityName);
 
         //Displaying welcome message with the username
@@ -87,11 +94,27 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * The onCreateOptionsMenu method specifies the options menu for the activity.
+     *
+     * @param menu the options menu in which items are placed.
+     *
+     * @return navigationManager object which calls createMenu method.
+     */
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
         return this.navigationManager.createMenu(menu);
     }
+
+    /**
+     * The onOptionsItemSelected method is called whenever an item in the options menu is selected.
+     *
+     * @param item the menu item that was selected.
+     *
+     * @return navigationManager object which calls onItemClicked method.
+     */
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

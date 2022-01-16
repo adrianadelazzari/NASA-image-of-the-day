@@ -25,6 +25,7 @@ public class ImageDatabaseOpenHelper extends SQLiteOpenHelper {
     public final static String COL_DATE = "DATE";
 
     public ImageDatabaseOpenHelper(Context ctx) {
+
         super(ctx, DATABASE_NAME, null, VERSION_NUM);
     }
 

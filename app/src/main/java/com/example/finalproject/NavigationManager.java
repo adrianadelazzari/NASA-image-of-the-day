@@ -16,7 +16,17 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
 
+/**
+ * The NavigationManager class contains the logic for the toolbar, navigation drawer, and display help message.
+ *
+ * @author Adriana de Lazzari
+ */
+
 public class NavigationManager implements NavigationView.OnNavigationItemSelectedListener {
+
+    /**
+     * Instance variables used in the class to create toolbar, navigation drawer, and display help message.
+     */
 
     private AppCompatActivity activity;
     private int toolbarId;
@@ -37,17 +47,42 @@ public class NavigationManager implements NavigationView.OnNavigationItemSelecte
         createNavigationDrawer(toolbar, drawerLayoutId);
     }
 
+    /**
+     * The createToolbar method creates the toolbar according to each toolbar id.
+     *
+     * @param toolbarId each page has a different toolbar id.
+     *
+     * @return toolbar, Toolbar object.
+     */
+
     private Toolbar createToolbar(int toolbarId){
         Toolbar toolbar = activity.findViewById(toolbarId);
         activity.setSupportActionBar(toolbar);
         return toolbar;
     }
 
+    /**
+     * The createMenu method creates the menu.
+     *
+     * @param menu the options menu in which items are placed.
+     *
+     * @return true.
+     */
+
     public boolean createMenu(Menu menu){
         MenuInflater inflater = activity.getMenuInflater();
         inflater.inflate(R.menu.toolbar_menu, menu);
         return true;
     }
+
+    /**
+     * The onItemClicked method contains the logic to start an
+     * appropriate activity when an item is clicked in the toolbar.
+     *
+     * @param menuItem the menu item clicked.
+     *
+     * @return true.
+     */
 
     public boolean onItemClicked(MenuItem menuItem){
         switch(menuItem.getItemId()){
@@ -72,6 +107,14 @@ public class NavigationManager implements NavigationView.OnNavigationItemSelecte
         return true;
     }
 
+    /**
+     * The createNavigationDrawer creates the navigation drawer.
+     *
+     * @param toolbar
+     *
+     * @param drawerLayoutId each page has a different drawer layout id.
+     */
+
     private void createNavigationDrawer(Toolbar toolbar, int drawerLayoutId){
 
         DrawerLayout drawer = activity.findViewById(drawerLayoutId);
@@ -87,6 +130,15 @@ public class NavigationManager implements NavigationView.OnNavigationItemSelecte
         TextView activityName = navigationView.getHeaderView(0).findViewById(R.id.activityName);
         activityName.setText(activityNameId);
     }
+
+    /**
+     * The onNavigationItemSelected method calls the onItemClicked method
+     * to start an appropriate activity when an item is clicked in the navigation drawer.
+     *
+     * @param item the menu item that was selected.
+     *
+     * @return false.
+     */
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
