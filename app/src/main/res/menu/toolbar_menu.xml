@@ -25,6 +25,12 @@
             android:icon="@drawable/help"
             app:showAsAction="always" />
 
+        <item
+            android:id="@+id/overflowMenuToolbar"
+            android:title="@string/help"
+            android:orderInCategory="4"
+            app:showAsAction="never" />
+
     </group>
 
 </menu>

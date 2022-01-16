@@ -77,7 +77,7 @@ public class NavigationManager implements NavigationView.OnNavigationItemSelecte
 
     /**
      * The onItemClicked method contains the logic to start an
-     * appropriate activity when an item is clicked in the toolbar.
+     * appropriate activity when an item is clicked in the toolbar and navigation drawer.
      *
      * @param menuItem the menu item clicked.
      *
@@ -98,6 +98,7 @@ public class NavigationManager implements NavigationView.OnNavigationItemSelecte
                 break;
             case R.id.helpToolbar:
             case R.id.help:
+            case R.id.overflowMenuToolbar:
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(activity);
                 alertDialogBuilder.setMessage(helpMessageId)
                         .setNeutralButton(R.string.ok, (click, arg) -> {})
@@ -132,8 +133,7 @@ public class NavigationManager implements NavigationView.OnNavigationItemSelecte
     }
 
     /**
-     * The onNavigationItemSelected method calls the onItemClicked method
-     * to start an appropriate activity when an item is clicked in the navigation drawer.
+     * The onNavigationItemSelected method calls the onItemClicked method and creates drawer layout according to the id.
      *
      * @param item the menu item that was selected.
      *
