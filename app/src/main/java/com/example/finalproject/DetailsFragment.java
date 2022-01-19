@@ -38,8 +38,10 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 /**
- * A simple {@link Fragment} subclass.
+ * The DetailsFragment class is a simple {@link Fragment} subclass.
+ * It contains the fragment details logic.
  *
+ * @author Adriana de Lazzari
  */
 
 public class DetailsFragment extends Fragment {
@@ -47,8 +49,6 @@ public class DetailsFragment extends Fragment {
     /**
      * Instance variables used in the class.
      */
-
-    private SavedImageActivity savedImageActivity;
 
     private String dateString;
     private String imageTitle;
@@ -61,15 +61,39 @@ public class DetailsFragment extends Fragment {
     private ImageDatabaseOpenHelper imageDatabaseOpenHelper;
     private Bitmap dailyImage;
 
+    /**
+     * SavedImageActivity object
+     */
+
+    private SavedImageActivity savedImageActivity;
+
     public DetailsFragment() {
         // Required empty public constructor
     }
+
+    /**
+     * The onAttach method is called when the fragment is first attached to its context.
+     *
+     * @param context Context object
+     */
 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         savedImageActivity = (SavedImageActivity) context;
     }
+
+    /**
+     * The onCreateView method is called to have the fragment instantiate its user interface view.
+     *
+     * @param inflater LayoutInflater object that can be used to inflate any views in the fragment.
+     *
+     * @param container parent view that the fragment's UI should be attached to.
+     *
+     * @param savedInstanceState if non-null, the fragment is being re-constructed from a previous saved state.
+     *
+     * @return result
+     */
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -115,6 +139,7 @@ public class DetailsFragment extends Fragment {
             Toast.makeText(this.getActivity(), R.string.toastDeletedImage, Toast.LENGTH_LONG).show();
         });
 
+        //button to hide fragment details
         Button hideBtn = result.findViewById(R.id.hideBtn);
         hideBtn.setOnClickListener( click -> {
             savedImageActivity.getSupportFragmentManager().beginTransaction().remove(this).commit();

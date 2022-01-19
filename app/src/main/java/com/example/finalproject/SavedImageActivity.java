@@ -49,6 +49,10 @@ public class SavedImageActivity extends AppCompatActivity {
 
     private NavigationManager navigationManager;
 
+    /**
+     * DetailsFragment object to display the details of the fragment.
+     */
+
     private DetailsFragment detailsFragment;
 
     /**
@@ -60,6 +64,7 @@ public class SavedImageActivity extends AppCompatActivity {
      * The loadDataFromDatabase method is called to populate the ListView.
      * Activities are accessible by selecting a graphical icon from a Toolbar, and NavigationDrawer.
      * Activities have a help menu item that displays an AlertDialog with instructions for how to use the interface.
+     * If the user is on a tablet, a fragment will be created to display detailed information of ListView items.
      *
      * @param savedInstanceState Bundle object containing the activity's previously saved state.
      */
@@ -69,7 +74,7 @@ public class SavedImageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_saved_image);
 
-        boolean isTablet = findViewById(R.id.fragmentLocation) != null; //check if the FrameLayout is loaded
+        boolean isTablet = findViewById(R.id.fragmentLocation) != null; //checking if the FrameLayout is loaded
 
         //Displaying toolbar, navigation drawer, and help message
         this.navigationManager = new NavigationManager(this, R.id.toolbarSavedImage, R.id.drawerLayoutSavedImage, R.id.navViewSavedImage, R.string.helpMessageSavedImage, R.string.savedImageActivityName);
@@ -85,7 +90,7 @@ public class SavedImageActivity extends AppCompatActivity {
             bundle.putString("date_key", imageDetails.getDate());
 
             if(isTablet){
-                detailsFragment = new DetailsFragment(); //add a DetailFragment
+                detailsFragment = new DetailsFragment(); //add a DetailsFragment
                 detailsFragment.setArguments(bundle); //pass it a bundle for information
                 getSupportFragmentManager()
                         .beginTransaction()
@@ -213,6 +218,10 @@ public class SavedImageActivity extends AppCompatActivity {
             this.date = date;
             this.url = url;
         }
+
+        /**
+         * getters and setters.
+         */
 
         public long getId() {
             return id;

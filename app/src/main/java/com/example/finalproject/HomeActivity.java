@@ -47,6 +47,7 @@ public class HomeActivity extends AppCompatActivity {
      * The user also might see their saved images.
      * Activities are accessible by selecting a graphical icon from a Toolbar, and NavigationDrawer.
      * Activities have a help menu item that displays an AlertDialog with instructions for how to use the interface.
+     * The user can edit their username entered in the welcome page by clicking on a pencil icon, which goes back to the welcome page.
      *
      * @param savedInstanceState Bundle object containing the activity's previously saved state.
      */
@@ -89,13 +90,13 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         //Clicking on the View Saved button will display the saved images
-
         Button viewSavedImgBtn = findViewById(R.id.viewSavedImgBtn);
         viewSavedImgBtn.setOnClickListener(click -> {
             Intent savedImage = new Intent(this, SavedImageActivity.class);
             startActivity(savedImage);
         });
 
+        //Clicking on the image button will go back to the welcome activity so that the user can edit their username
         ImageButton editUsername = findViewById(R.id.editUsername);
         editUsername.setOnClickListener(click ->{
             Intent welcomeActivity = new Intent(this, WelcomeActivity.class);
