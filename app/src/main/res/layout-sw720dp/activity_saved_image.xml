@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SavedImageActivity"
+    android:orientation="vertical"
+    tools:openDrawer="start"
+    android:background="@drawable/welcome_background"
+    android:id="@+id/drawerLayoutSavedImage">
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navViewSavedImage"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/header_layout"
+        app:menu="@menu/navigation_drawer_menu" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarSavedImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:titleTextColor="@color/gray"
+            android:background="#806A0DAD"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ListView
+                android:id="@+id/listView"
+                android:layout_width="300dp"
+                android:layout_height="match_parent" />
+
+            <FrameLayout
+                android:id="@+id/fragmentLocation"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/listView"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</androidx.drawerlayout.widget.DrawerLayout>

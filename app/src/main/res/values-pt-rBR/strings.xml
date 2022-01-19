@@ -35,4 +35,5 @@
     <string name="helpMessageHome">Para visualizar a imagem da NASA do dia, selecione uma data e clique no botão Visualizar. Para visualizar suas imagens salvas, clique no botão Visualizar Salvas.</string>
     <string name="helpMessageImageViewer">Para salvar a imagem, clique no botão Salvar. Após salvar, você pode excluir a imagem salva clicando no botão Deletar.</string>
     <string name="helpMessageSavedImage">Todas as suas imagens salvas são exibidas aqui. Para visualizar os detalhes da imagem, clique no item da imagem. Ao fazer um clique longo no item da lista, você pode excluir a imagem salva da lista.</string>
+    <string name="hideBtn">Ocultar</string>
 </resources>

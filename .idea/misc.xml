@@ -3,11 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/adria/StudioProjects/FinalProject/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.36875" />
+        <entry key="..\:/Users/adria/StudioProjects/FinalProject/app/src/main/res/layout-sw720dp/activity_home.xml" value="0.264453125" />
+        <entry key="..\:/Users/adria/StudioProjects/FinalProject/app/src/main/res/layout-sw720dp/activity_image_viewer.xml" value="0.264453125" />
+        <entry key="..\:/Users/adria/StudioProjects/FinalProject/app/src/main/res/layout-sw720dp/activity_saved_image.xml" value="0.22" />
+        <entry key="..\:/Users/adria/StudioProjects/FinalProject/app/src/main/res/layout-sw720dp/activity_welcome.xml" value="0.264453125" />
+        <entry key="..\:/Users/adria/StudioProjects/FinalProject/app/src/main/res/layout/activity_empty.xml" value="0.35260416666666666" />
         <entry key="..\:/Users/adria/StudioProjects/FinalProject/app/src/main/res/layout/activity_home.xml" value="0.33" />
         <entry key="..\:/Users/adria/StudioProjects/FinalProject/app/src/main/res/layout/activity_image_viewer.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/adria/StudioProjects/FinalProject/app/src/main/res/layout/activity_main.xml" value="0.35260416666666666" />
         <entry key="..\:/Users/adria/StudioProjects/FinalProject/app/src/main/res/layout/activity_saved_image.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/adria/StudioProjects/FinalProject/app/src/main/res/layout/activity_welcome.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/adria/StudioProjects/FinalProject/app/src/main/res/layout/fragment_details.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/adria/StudioProjects/FinalProject/app/src/main/res/layout/header_layout.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/adria/StudioProjects/FinalProject/app/src/main/res/layout/image_details.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/adria/StudioProjects/FinalProject/app/src/main/res/menu/navigation_drawer_menu.xml" value="0.36666666666666664" />

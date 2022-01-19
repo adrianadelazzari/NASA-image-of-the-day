@@ -33,6 +33,9 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
+        Bundle bundle = getIntent().getExtras();
+        boolean editUsername = bundle != null ? bundle.getBoolean("edit_username_key", false) : false;
+
         //Clicking on the save button will launch the home activity
         Intent homePage = new Intent(this, HomeActivity.class);
         SharedPreferences sharedPref = getSharedPreferences(getString(R.string.sharedPrefs_file_key), Context.MODE_PRIVATE);
@@ -40,11 +43,15 @@ public class WelcomeActivity extends AppCompatActivity {
         String savedString = sharedPref.getString(getString(R.string.sharedPrefs_username_key), "");
 
         //The user name needs to be entered and saved to start the home activity
-        if (!savedString.isEmpty()) {
+        if (!editUsername && !savedString.isEmpty()) {
             startActivity(homePage);
             finish();
         } else {
             EditText userNameEditText = findViewById(R.id.userName);
+            if(!savedString.isEmpty()){
+                userNameEditText.setText(savedString);
+            }
+
             Button savedUserName = findViewById(R.id.saveUserNameBtn);
             savedUserName.setOnClickListener(click -> {
                 String userName = userNameEditText.getText().toString();

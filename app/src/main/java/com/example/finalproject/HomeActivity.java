@@ -17,6 +17,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -88,9 +89,21 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         //Clicking on the View Saved button will display the saved images
-        Intent savedImage = new Intent(this, SavedImageActivity.class);
+
         Button viewSavedImgBtn = findViewById(R.id.viewSavedImgBtn);
-        viewSavedImgBtn.setOnClickListener(click -> { startActivity(savedImage);
+        viewSavedImgBtn.setOnClickListener(click -> {
+            Intent savedImage = new Intent(this, SavedImageActivity.class);
+            startActivity(savedImage);
+        });
+
+        ImageButton editUsername = findViewById(R.id.editUsername);
+        editUsername.setOnClickListener(click ->{
+            Intent welcomeActivity = new Intent(this, WelcomeActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putBoolean("edit_username_key", true);
+            welcomeActivity.putExtras(bundle);
+            startActivity(welcomeActivity);
+            this.finish();
         });
     }
 

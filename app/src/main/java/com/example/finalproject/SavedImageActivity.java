@@ -49,6 +49,8 @@ public class SavedImageActivity extends AppCompatActivity {
 
     private NavigationManager navigationManager;
 
+    private DetailsFragment detailsFragment;
+
     /**
      * The onCreate method creates the saved image list page and adds functionality.
      * The ListView items are displayed to the user with their saved images.
@@ -67,6 +69,8 @@ public class SavedImageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_saved_image);
 
+        boolean isTablet = findViewById(R.id.fragmentLocation) != null; //check if the FrameLayout is loaded
+
         //Displaying toolbar, navigation drawer, and help message
         this.navigationManager = new NavigationManager(this, R.id.toolbarSavedImage, R.id.drawerLayoutSavedImage, R.id.navViewSavedImage, R.string.helpMessageSavedImage, R.string.savedImageActivityName);
 
@@ -77,13 +81,21 @@ public class SavedImageActivity extends AppCompatActivity {
         myList.setOnItemClickListener((parent, view, position, id) -> {
             ImageDetails imageDetails = imageDetailsList.get(position);
 
-            Intent imageViewer = new Intent(this, ImageViewerActivity.class);
-
             Bundle bundle = new Bundle();
             bundle.putString("date_key", imageDetails.getDate());
-            imageViewer.putExtras(bundle);
 
-            startActivity(imageViewer);
+            if(isTablet){
+                detailsFragment = new DetailsFragment(); //add a DetailFragment
+                detailsFragment.setArguments(bundle); //pass it a bundle for information
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragmentLocation, detailsFragment) //add fragment to FrameLayout
+                        .commit();
+            } else { //if it is a phone
+                Intent imageViewer = new Intent(this, ImageViewerActivity.class);
+                imageViewer.putExtras(bundle);
+                startActivity(imageViewer);
+            }
         });
 
         myList.setOnItemLongClickListener((parent, view, position, id) -> {
@@ -128,7 +140,7 @@ public class SavedImageActivity extends AppCompatActivity {
      * The loadDataFromDatabase method retrieves image data from database.
      */
 
-    private void loadDataFromDatabase() {
+    public void loadDataFromDatabase() {
         imageDetailsList.clear();
 
         //getting database connection

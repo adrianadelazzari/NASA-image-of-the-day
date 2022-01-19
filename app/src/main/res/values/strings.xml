@@ -34,4 +34,5 @@
     <string name="helpMessageHome">To view the NASA image of the day, select a date and click on the View button. To view your saved images, click on the View Saved button.</string>
     <string name="helpMessageImageViewer">To save the image, click on the Save button. After saving, you can delete the saved image by clicking on the Delete button.</string>
     <string name="helpMessageSavedImage">All your saved images are displayed here. To view the image details, click on the image item. By doing a long click on the list item, you can delete the saved image from the list.</string>
+    <string name="hideBtn">Hide</string>
 </resources>
