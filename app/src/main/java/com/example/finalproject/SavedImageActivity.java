@@ -114,6 +114,9 @@ public class SavedImageActivity extends AppCompatActivity {
                         imageDetailsList.remove(position);
                         imageDetailsDeleted = imageDetails;
                         myAdapter.notifyDataSetChanged();
+                        if(detailsFragment != null){
+                            detailsFragment.checkDatabase();
+                        }
 
                         Snackbar.make(myList, R.string.imageDeletedMessage, Snackbar.LENGTH_LONG)
                                 .setAction(R.string.imageDeletedUndoMessage, (c -> {

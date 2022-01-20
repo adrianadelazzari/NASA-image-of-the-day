@@ -155,7 +155,7 @@ public class DetailsFragment extends Fragment {
      * Otherwise, it creates an AsyncTask to retrieve NASA information and downloads the image.
      */
 
-    private void checkDatabase(){
+    public void checkDatabase(){
         //Getting database connection
         SQLiteDatabase db = imageDatabaseOpenHelper.getReadableDatabase();
 
